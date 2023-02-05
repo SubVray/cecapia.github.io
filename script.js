@@ -42,7 +42,7 @@ async function detectDeviceType() {
     form.classList.toggle("d-none");
 
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: "user" },
+      video: { facingMode: "environment" },
     });
 
     cameraStream.srcObject = stream;
