@@ -17,19 +17,17 @@
     <link rel="stylesheet" href="index.css" />
   </head>
 
-  <body class=" container d-flex justify-content-center align-items-center">
+  <body
+    class="container d-flex justify-content-center align-items-center flex-column">
     <form
       action=""
-      class="form-control form-signature d-flex justify-content-center align-items-center flex-column gap-3 ">
+      class="form-control form-signature d-flex justify-content-center align-items-center flex-column gap-3">
       <div class="logo">
-        <img src="cecapia.jpg" width="200px" alt="">
+        <img src="cecapia.jpg" width="200px" alt="" />
       </div>
       <div class="form-control">
         <label for=""> # Cédula:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="text-cedula" />
+        <input type="text" class="form-control" id="text-cedula" />
       </div>
 
       <div id="signature-pad">
@@ -43,6 +41,21 @@
           Borrar
         </button>
       </div>
+    </form>
+
+    <form id="upload-form">
+      <div id="camera-box">
+        <video id="camera-stream"></video>
+        <button id="capture-button">Capturar</button>
+      </div>
+
+      <input type="hidden" id="front-input" name="front" />
+      <input type="hidden" id="back-input" name="back" />
+
+      <button type="button" id="switch-button">
+        Cambiar a la parte trasera
+      </button>
+      <button type="submit">Upload</button>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
