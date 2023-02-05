@@ -32,3 +32,8 @@ video {
   font-size: 18px;
   color: #fff;
 }
+
+#img1,
+#img2 {
+  object-fit: fill;
+}

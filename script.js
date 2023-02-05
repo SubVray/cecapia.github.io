@@ -131,7 +131,21 @@ saveButton.addEventListener("click", function () {
   const front = frontInput.value;
   const back = backInput.value;
   const dataURL = signaturePad.toDataURL("image/png");
-  if (front == "" && back == "") {
+  var context = canvas.getContext("2d");
+  if (
+    !context
+      .getImageData(0, 0, canvas.width, canvas.height)
+      .data.some((channel) => channel !== 0)
+  ) {
+    Swal.fire({
+      title: "Warning",
+      text: "Debe firmar para seguir",
+      icon: "warning",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Entendido",
+    });
+  } else if (front == "" && back == "") {
     Swal.fire({
       title: "Warning",
       text: "Para poder guardar la información primero debe tomar las fotos de la cedulas",
