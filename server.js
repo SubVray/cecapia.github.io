@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 });
 const uri =
   "mongodb+srv://SubVray:jim123@cluster0.6puj5ox.mongodb.net/?retryWrites=true&w=majority";
-app.use(express.json({ limit: "5000mb" }));
+app.use(express.json({ limit: "50mb" }));
 
 mongodb.MongoClient.connect(
   uri,

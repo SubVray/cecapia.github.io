@@ -12,11 +12,6 @@ const switchButton = document.querySelector("#switch-button");
 const lado = document.querySelector("#lado");
 let user = {};
 
-
-
-
-
-
 if (window.screen.width > 800) {
   canvas.width = 500;
   canvas.height = 300;
@@ -83,7 +78,7 @@ captureButton.addEventListener("click", function () {
   const context = canvas.getContext("2d");
   context.drawImage(cameraStream, 0, 0);
 
-  const photo = canvas.toDataURL("image/jpeg");
+  const photo = canvas.toDataURL("image/jpeg", 0.5);
 
   if (isBack) {
     backInput.value = photo;
@@ -213,19 +208,19 @@ const sendInfo = async () => {
       frontImg: front,
       backImg: back,
     };
-      fetch("https://localhost:5000/data", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
+    fetch("http://localhost:5000/data", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((response) => {
+        console.log("Data sent");
       })
-        .then((response) => {
-          console.log("Data sent");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .catch((error) => {
+        console.log(error);
+      });
 
     console.log(user);
   }
