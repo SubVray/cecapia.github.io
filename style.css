@@ -16,6 +16,9 @@ body {
   min-width: 300px;
 }
 video {
+  display: block;
 border-radius: 12px;
-height: 5.4cm;
+width: 500px;
+height: 250px;
+object-fit: cover;
 }
