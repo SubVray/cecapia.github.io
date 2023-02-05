@@ -10,8 +10,12 @@ body {
   min-width: 300px;
 }
 
-#camera-box{
+#camera-box {
   width: 100%;
   max-width: 500px;
   min-width: 300px;
+}
+video {
+  width: 321.25984251968504px;
+  height: 204.09448818897638px;
 }
