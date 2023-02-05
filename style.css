@@ -1,6 +1,9 @@
 #signature-canva {
-min-width: 300px;
+  min-width: 300px;
 }
-.form-signature{
-	max-width: 500px;
+.form-signature {
+  max-width: 500px;
+}
+body {
+  max-width: 500px;
 }
