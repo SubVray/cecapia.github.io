@@ -24,6 +24,15 @@ const dataSchema = new mongoose.Schema({
 const Data = mongoose.model("Data", dataSchema);
 
 // Configurar Express para recibir y procesar solicitudes POST
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use(express.json());
 app.post("/data", (req, res) => {
   const newData = new Data({
