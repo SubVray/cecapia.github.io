@@ -10,15 +10,10 @@ body {
   min-width: 300px;
 }
 
-#camera-box {
-  width: 100%;
-  max-width: 500px;
-  min-width: 300px;
-}
 video {
   display: block;
 border-radius: 12px;
-width: 450px;
+max-width: 500px;
 height: 250px;
 object-fit: cover;
 }
