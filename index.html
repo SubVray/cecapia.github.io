@@ -17,57 +17,29 @@
     <link rel="stylesheet" href="index.css" />
   </head>
 
-  <!-- <body
-    class="container d-flex flex-column justify-content-center align-items-center"> -->
-    <!-- <form
-      action=""
-      class="form-control form-signature d-flex justify-content-center align-items-center flex-column gap-3">
-      <div class="logo">
-        <img src="cecapia.jpg" width="200px" alt="" />
-      </div>
-      <div class="form-control">
-        <label for=""> # Cédula:</label>
-        <input type="text" class="form-control" id="text-cedula" />
-      </div>
+  <body
+    class="container d-flex flex-column justify-content-center align-items-center">
+<div class="display-cover">
+    <video autoplay></video>
+    <canvas class="d-none"></canvas>
 
-      <div id="signature-pad">
-        <canvas class="border" id="signature-canva"></canvas>
-      </div>
-      <div class="">
-        <button id="save" type="button" class="btn btn-success text-center">
-          Guardar
-        </button>
-        <button id="clear" type="button" class="btn btn-danger text-center">
-          Borrar
-        </button>
-      </div>
-      <button type="button" onclick="detectDeviceType()">Subir fotos</button>
-    </form>
+    <div class="video-options">
+        <select name="" id="" class="custom-select">
+            <option value="">Select camera</option>
+        </select>
+    </div>
 
-    <form id="upload-form" class="d-none">
-      <div id="camera-box">
-        <video id="camera-stream" width="300px"></video>
-        <button id="capture-button">Capturar</button>
-      </div>
+    <img class="screenshot-image d-none" alt="">
 
-      <input type="hidden" id="front-input" name="front" />
-      <input type="hidden" id="back-input" name="back" />
+    <div class="controls">
+        <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
+        <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
+        <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
+    </div>
+</div>
 
-      <button type="button" id="switch-button">
-        Cambiar a la parte trasera
-      </button>
-      <button type="submit">Upload</button>
-    </form> -->
-
-  <body onload="takePicture()">
-    <video id="video" style="width: 100%"></video>
-    <br>
-    <button id="take-picture">Tomar foto</button>
-    <br>
-    <img id="picture" style="width: 100%">
-  </body>
 
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <script src="app.js"></script>
-  <!-- </body> -->
+  </body>
 </html>
