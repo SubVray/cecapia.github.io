@@ -1,20 +1,29 @@
 #signature-canva {
+  max-width: 400px;
+  min-width: 200px;
+  width: 100%;
+}
+#signature-pad {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   min-width: 300px;
+  width: 100%;
 }
 .form-signature {
-  max-width: 500px;
+  max-width: 600px;
 }
 body {
-  width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   min-width: 300px;
+  width: 100%;
 }
 
 video {
-  display: block;
   border-radius: 12px;
-  max-width: 500px;
+  display: block;
   height: 250px;
+  max-width: 500px;
   object-fit: cover;
 }
 #camera-box {
@@ -22,15 +31,15 @@ video {
 }
 
 #capture-button {
-  position: absolute;
+  background-color: rgba(0, 0, 0, 0.575);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
   left: 50%;
+  padding: 10px;
+  position: absolute;
   top: 85%;
   transform: translate(-50%, -50%);
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.575);
-  padding: 10px;
-  font-size: 18px;
-  color: #fff;
 }
 
 #img1,
