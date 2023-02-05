@@ -38,14 +38,33 @@ if (!isBack) {
   console.log("parte trasera");
 }
 
-async function startCamera() {
-  form.classList.toggle("d-none");
-  const stream = await navigator.mediaDevices.getUserMedia({
-    video: { facingMode: { exact: "environment" } },
-  });
+async function detectDeviceType() {
+  var isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
 
-  cameraStream.srcObject = stream;
-  cameraStream.play();
+  if (isMobile) {
+    console.log("Estás en un dispositivo móvil");
+
+    form.classList.toggle("d-none");
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { exact: "environment" } },
+    });
+
+    cameraStream.srcObject = stream;
+    cameraStream.play();
+  } else {
+    console.log("Estás en un PC");
+
+    form.classList.toggle("d-none");
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" },
+    });
+
+    cameraStream.srcObject = stream;
+    cameraStream.play();
+  }
 }
 
 captureButton.addEventListener("click", function () {
@@ -66,6 +85,7 @@ captureButton.addEventListener("click", function () {
 });
 
 switchButton.addEventListener("click", function () {
+  detectDeviceType();
   isBack = !isBack;
   if (!isBack) {
     document.getElementById("switch-button").innerHTML =
