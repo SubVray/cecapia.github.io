@@ -115,7 +115,7 @@ const photoContainer = document.querySelector("#photo-container");
 startCameraButton.addEventListener("click", (event) => {
   navigator.mediaDevices
     .getUserMedia({
-      video: { facingMode: { exact: "environment" } },
+      video: { facingMode: { exact: "user" } },
     })
     .then((stream) => {
       cameraStream.srcObject = stream;
