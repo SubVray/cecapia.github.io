@@ -11,6 +11,12 @@ const backInput = document.querySelector("#back-input");
 const switchButton = document.querySelector("#switch-button");
 const lado = document.querySelector("#lado");
 let user = {};
+
+
+
+
+
+
 if (window.screen.width > 800) {
   canvas.width = 500;
   canvas.height = 300;
@@ -164,8 +170,7 @@ saveButton.addEventListener("click", () => {
   }
 });
 
-const sendInfo = (e) => {
-  e.preventDefault();
+const sendInfo = async () => {
   const front = frontInput.value;
   const back = backInput.value;
   const dataURL = signaturePad.toDataURL("image/png");
@@ -208,9 +213,22 @@ const sendInfo = (e) => {
       frontImg: front,
       backImg: back,
     };
+      fetch("http://localhost:5000/data", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => {
+          console.log("Data sent");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
     console.log(user);
   }
-  window.location.reload();
 
   // Save dataURL to database or send to server
 };
