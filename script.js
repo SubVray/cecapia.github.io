@@ -208,7 +208,7 @@ const sendInfo = async () => {
       frontImg: front,
       backImg: back,
     };
-    fetch("https://subvray.github.io/Cecapia.github.io/data", {
+    fetch("https://subvray.github.io/cecapia.github.io/data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
