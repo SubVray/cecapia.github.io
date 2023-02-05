@@ -203,6 +203,7 @@ const sendInfo = async () => {
     });
   } else {
     user = {
+      phoneNumber:'',
       cedula: textCedula.value,
       firma: dataURL,
       frontImg: front,
