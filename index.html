@@ -25,7 +25,9 @@
       <div class="logo">
         <img src="cecapia.jpg" width="200px" alt="" />
       </div>
-      <div class="form-control">
+      <div class="form-control d-flex flex-column gap-2">
+        <label for=""> Numero de Teléfono :</label>
+        <input type="text" class="form-control" id="text-numero" />
         <label for=""> # Cédula:</label>
         <input type="text" class="form-control" id="text-cedula" />
       </div>
@@ -41,10 +43,19 @@
           Borrar
         </button>
       </div>
-      <button type="button" onclick="detectDeviceType()">Subir fotos</button>
+      <button
+        id="fotos-cedula"
+        type="button"
+        onclick="detectDeviceType()"
+        class="btn btn-primary">
+        Subir cédula
+      </button>
     </form>
 
-    <form id="upload-form" class="d-none">
+    <form id="upload-form" class="d-none mt-3">
+      <div class="">
+        <p id="lado" class="text-center h3"></p>
+      </div>
       <div id="camera-box">
         <video
           id="camera-stream"
@@ -53,18 +64,21 @@
           muted
           playsinline
           width="100%"></video>
-        <button id="capture-button">Capturar</button>
+        <button id="capture-button" class="btn btn-capture">Tomar Foto</button>
       </div>
 
       <input type="hidden" id="front-input" name="front" />
       <input type="hidden" id="back-input" name="back" />
 
-      <button type="button" id="switch-button">
-        Cambiar a la parte trasera
+      <button type="button" id="switch-button" class="opacity-0">
+        Cambiar a la parte posterior de la cédula
       </button>
-      <button type="submit">Upload</button>
     </form>
-
+    <div class="my-3">
+      <img src="#" id="img1" class="w-25" alt="" />
+      <img src="#" id="img2" class="w-25" alt="" />
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <script src="script.js"></script>
   </body>

@@ -2,6 +2,14 @@ const canvas = document.querySelector("canvas");
 const clearButton = document.querySelector("#clear");
 const saveButton = document.querySelector("#save");
 const textCedula = document.querySelector("#text-cedula");
+const form = document.querySelector("#upload-form");
+const cameraBox = document.querySelector("#camera-box");
+const cameraStream = document.querySelector("#camera-stream");
+const captureButton = document.querySelector("#capture-button");
+const frontInput = document.querySelector("#front-input");
+const backInput = document.querySelector("#back-input");
+const switchButton = document.querySelector("#switch-button");
+const lado = document.querySelector("#lado");
 
 const signaturePad = new SignaturePad(canvas, {
   minWidth: 1,
@@ -11,31 +19,16 @@ const signaturePad = new SignaturePad(canvas, {
 
 clearButton.addEventListener("click", function () {
   signaturePad.clear();
+  window.location.reload();
 });
-
-saveButton.addEventListener("click", function () {
-  const dataURL = signaturePad.toDataURL();
-  const user = {
-    cedula: textCedula.value,
-    firma: dataURL,
-  };
-  console.log(user);
-  // Save dataURL to database or send to server
-});
-
-const form = document.querySelector("#upload-form");
-const cameraBox = document.querySelector("#camera-box");
-const cameraStream = document.querySelector("#camera-stream");
-const captureButton = document.querySelector("#capture-button");
-const frontInput = document.querySelector("#front-input");
-const backInput = document.querySelector("#back-input");
-const switchButton = document.querySelector("#switch-button");
 
 let isBack = false;
 if (!isBack) {
   console.log("parte frontal");
+  lado.innerHTML = "Frontal de la cédula";
 } else {
-  console.log("parte trasera");
+  lado.innerHTML = "Trasera";
+  console.log("Posterior de la cédula");
 }
 
 async function detectDeviceType() {
@@ -49,9 +42,7 @@ async function detectDeviceType() {
     form.classList.toggle("d-none");
 
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: { exact: "environment" },
-      },
+      video: { facingMode: "user" },
     });
 
     cameraStream.srcObject = stream;
@@ -61,9 +52,7 @@ async function detectDeviceType() {
 
     form.classList.toggle("d-none");
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode:  "user" ,
-      },
+      video: { facingMode: "environment" },
     });
 
     cameraStream.srcObject = stream;
@@ -92,10 +81,12 @@ switchButton.addEventListener("click", function () {
   isBack = !isBack;
   if (!isBack) {
     document.getElementById("switch-button").innerHTML =
-      "Cambiar a la parte trasera";
+      "Cambiar a la parte posterior de la cédula";
+    lado.innerHTML = "Frontal de la cédula";
   } else {
     document.getElementById("switch-button").innerHTML =
-      "Cambiar a la parte frontal";
+      "Cambiar a la parte frontal de la cédula";
+    lado.innerHTML = "Posterior de la cédula";
   }
 });
 
@@ -104,7 +95,69 @@ form.addEventListener("submit", function (event) {
 
   const front = frontInput.value;
   const back = backInput.value;
-  console.log(front, back);
+  if (front != "") {
+    Swal.fire({
+      title: "success",
+      text: "Foto frontal exitosa!",
+      icon: "success",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Entendido",
+    }).then(() => {
+      document.getElementById("img1").src = front;
+      document.getElementById("switch-button").click();
+    });
+  }
+  if (back != "") {
+    Swal.fire({
+      title: "success",
+      text: "Foto posterior exitosa!",
+      icon: "success",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Entendido",
+    }).then(() => {
+      document.getElementById("img2").src = back;
+
+      document.getElementById("fotos-cedula").click();
+      document.getElementById("fotos-cedula").classList.add("d-none");
+    });
+  }
 
   // Do something with front and back (e.g. send to server)
+});
+
+saveButton.addEventListener("click", function () {
+  const front = frontInput.value;
+  const back = backInput.value;
+  const dataURL = signaturePad.toDataURL("image/png");
+  if (front == "" && back == "") {
+    Swal.fire({
+      title: "Warning",
+      text: "Para poder guardar la información primero debe tomar las fotos de la cedulas",
+      icon: "warning",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Entendido",
+    });
+  } else if (textCedula.value == "") {
+    Swal.fire({
+      title: "Warning",
+      text: "Debe de ingresar su numero de identificacion",
+      icon: "warning",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Entendido",
+    });
+  } else {
+    const user = {
+      cedula: textCedula.value,
+      firma: dataURL,
+      frontImg: front,
+      backImg: back,
+    };
+    console.log(user);
+  }
+
+  // Save dataURL to database or send to server
 });
