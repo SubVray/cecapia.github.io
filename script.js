@@ -164,7 +164,8 @@ saveButton.addEventListener("click", () => {
   }
 });
 
-const sendInfo = () => {
+const sendInfo = (e) => {
+  e.preventDefault();
   const front = frontInput.value;
   const back = backInput.value;
   const dataURL = signaturePad.toDataURL("image/png");
@@ -209,7 +210,7 @@ const sendInfo = () => {
     };
     console.log(user);
   }
-  window.location.reload()
+  window.location.reload();
 
   // Save dataURL to database or send to server
 };
