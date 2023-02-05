@@ -56,7 +56,7 @@ async function detectDeviceType() {
   } else {
     console.log("Estás en un PC");
     form.classList.toggle("d-none");
-    const stream = await navigator.mediaDevices.getUserMedia({
+    const stream = await navigator.mediaDevices.webkitGetUserMedia({
       video: { facingMode: "environment" },
     });
 
