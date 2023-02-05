@@ -41,7 +41,7 @@ if (!isBack) {
 async function startCamera() {
   form.classList.toggle("d-none");
   const stream = await navigator.mediaDevices.getUserMedia({
-    video: { facingMode: "user" },
+    video: { facingMode: { exact: "environment" } },
   });
 
   cameraStream.srcObject = stream;
