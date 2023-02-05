@@ -18,7 +18,7 @@ body {
 video {
   display: block;
 border-radius: 12px;
-width: 500px;
+width: 450px;
 height: 250px;
 object-fit: cover;
 }
