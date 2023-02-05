@@ -209,7 +209,7 @@ const sendInfo = async () => {
       frontImg: front,
       backImg: back,
     };
-    fetch("http://localhost:5000/data", {
+    fetch("https://cecapia-github-io.vercel.app/api/data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
