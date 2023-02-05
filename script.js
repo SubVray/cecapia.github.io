@@ -213,7 +213,7 @@ const sendInfo = async () => {
       frontImg: front,
       backImg: back,
     };
-      fetch("http://localhost:5000/data", {
+      fetch("https://localhost:5000/data", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
