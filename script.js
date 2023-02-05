@@ -11,6 +11,17 @@ const backInput = document.querySelector("#back-input");
 const switchButton = document.querySelector("#switch-button");
 const lado = document.querySelector("#lado");
 
+var canva = document.getElementById("signature-canva");
+console.log(window.screen.width)
+if (window.screen.width > 800) {
+  canva.width = 500;
+  canva.height = 300;
+}else{
+  canva.width = 300;
+  canva.height = 200;
+
+}
+
 const signaturePad = new SignaturePad(canvas, {
   minWidth: 1,
   maxWidth: 1,
