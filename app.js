@@ -46,17 +46,15 @@ async function detectDeviceType() {
 
   if (isMobile) {
     console.log("Estás en un dispositivo móvil");
-
     form.classList.toggle("d-none");
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: { exact: "environment" } },
+      video: { facingMode: "user" },
     });
 
     cameraStream.srcObject = stream;
     cameraStream.play();
   } else {
     console.log("Estás en un PC");
-
     form.classList.toggle("d-none");
     const stream = await navigator.mediaDevices.getUserMedia({
       video: { facingMode: "environment" },
@@ -85,7 +83,6 @@ captureButton.addEventListener("click", function () {
 });
 
 switchButton.addEventListener("click", function () {
-  detectDeviceType();
   isBack = !isBack;
   if (!isBack) {
     document.getElementById("switch-button").innerHTML =
@@ -101,7 +98,7 @@ form.addEventListener("submit", function (event) {
 
   const front = frontInput.value;
   const back = backInput.value;
-  console.log(front, back);
+  console.log(`front:${front} <br /> back:${back}`);
 
   // Do something with front and back (e.g. send to server)
 });
