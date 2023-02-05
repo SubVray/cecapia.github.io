@@ -1,4 +1,3 @@
-
 .screenshot-image {
   width: 150px;
   height: 90px;
@@ -21,9 +20,8 @@
 }
 
 video {
-  //margin: 5% auto;
   width: 100%;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .video-options {
@@ -37,7 +35,6 @@ video {
   right: 20px;
   top: 20px;
   display: flex;
-
 }
 
 .controls > button {
@@ -47,25 +44,19 @@ video {
   border-radius: 100%;
   margin: 0 6px;
   background: transparent;
-
-  &:hover {
-    svg {
-      color: white !important;
-    }
-  }
 }
-
+.controls > button:hover svg {
+  color: white !important;
+}
 
 @media (min-width: 300px) and (max-width: 400px) {
   .controls {
     flex-direction: column;
-
-    button {
-      margin: 5px 0 !important;
-    }
+  }
+  .controls button {
+    margin: 5px 0 !important;
   }
 }
-
 .controls > button > svg {
   height: 20px;
   width: 18px;
@@ -76,27 +67,23 @@ video {
 
 .controls button:nth-child(1) {
   border: 2px solid #D2002E;
-
-  svg {
-    color: #D2002E;
-
-  }
+}
+.controls button:nth-child(1) svg {
+  color: #D2002E;
 }
 
 .controls button:nth-child(2) {
   border: 2px solid #008496;
-
-  svg {
-    color: #008496;
-  }
+}
+.controls button:nth-child(2) svg {
+  color: #008496;
 }
 
 .controls button:nth-child(3) {
   border: 2px solid #00B541;
-
-  svg {
-    color: #00B541;
-  }
+}
+.controls button:nth-child(3) svg {
+  color: #00B541;
 }
 
 .controls > button {
@@ -106,10 +93,7 @@ video {
   border-radius: 100%;
   margin: 0 6px;
   background: transparent;
-
-  &:hover {
-    svg {
-      color: white;
-    }
-  }
+}
+.controls > button:hover svg {
+  color: white;
 }
