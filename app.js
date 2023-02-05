@@ -107,32 +107,43 @@
 
 
 
-const startCameraButton = document.querySelector("#start-camera");
-const cameraStream = document.querySelector("#camera-stream");
-const takePhotoButton = document.querySelector("#take-photo");
-const photoContainer = document.querySelector("#photo-container");
+  async function takePicture() {
+    // Verifica si la cámara está disponible
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      alert("La cámara no está disponible");
+      return;
+    }
 
-startCameraButton.addEventListener("click", (event) => {
-  navigator.mediaDevices
-    .getUserMedia({
-      video: { facingMode: "user"  },
-    })
-    .then((stream) => {
-      cameraStream.srcObject = stream;
-      cameraStream.style.display = "block";
-    })
-    .catch((error) => {
-      console.error("Error al acceder a la cámara:", error);
+    // Pide permiso para acceder a la cámara
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" },
     });
-});
 
-takePhotoButton.addEventListener("click", (event) => {
-  const photo = new Image();
-  photo.src = cameraStream.srcObject
-    .getVideoTracks()[0]
-    .getSettings().facingMode;
-  photo.width = 400;
-  photo.height = 300;
-  photoContainer.appendChild(photo);
-  photoContainer.style.display = "block";
-});
+    // Muestra la vista previa de la cámara en un elemento <video>
+    const videoElement = document.getElementById("video");
+    videoElement.srcObject = stream;
+    videoElement.play();
+
+    // Toma una foto cuando se hace clic en un botón
+    document
+      .getElementById("take-picture")
+      .addEventListener("click", async function () {
+        // Crea un elemento <canvas>
+        const canvas = document.createElement("canvas");
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+
+        // Dibuja la vista previa de la cámara en el canvas
+        const context = canvas.getContext("2d");
+        context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        // Convierte la imagen del canvas a una URL
+        const pictureUrl = canvas.toDataURL();
+
+        // Detiene la transmisión de video
+        stream.getTracks().forEach((track) => track.stop());
+
+        // Muestra la foto tomada
+        document.getElementById("picture").src = pictureUrl;
+      });
+  }
