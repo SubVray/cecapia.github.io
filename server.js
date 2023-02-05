@@ -1,30 +1,40 @@
 const express = require("express");
-const app = express();
+const mongodb = require("mongodb");
 
+const app = express();
 const port = process.env.PORT || 5000;
 
-app.listen(port);
+// Conectarse a MongoDB
+const uri =
+  "mongodb+srv://SubVray:jim123@cluster0.6puj5ox.mongodb.net/?retryWrites=true&w=majority";
+mongodb.connect(
+  uri,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err, client) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
 
-console.log(`losten on port: ${port}`)
-// app.use(express.json());
-// app.post("/data", (req, res) => {
-//   const newData = new Data({
-//     phoneNumber: req.body.phoneNumber,
-//     cedula: req.body.cedula,
-//     firma: req.body.firma,
-//     frontImg: req.body.frontImg,
-//     backImg: req.body.backImg,
-//   });
-//   newData.save((error) => {
-//     if (error) {
-//       res.status(500).send(error);
-//     } else {
-//       res.status(200).send("Data saved successfully!");
-//     }
-//   });
-// });
+    const db = client.db("users");
 
-// // Iniciar el servidor en el puerto 5000
-// app.listen(5000, () => {
-//   console.log("Server started on port 5000");
-// });
+    // Manejar solicitudes POST para agregar datos a MongoDB
+    app.use(express.json());
+    app.post("/api/data", (req, res) => {
+      const data = req.body;
+      db.collection("users").insertOne(data, (err, result) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send({ error: "Algo salió mal" });
+          return;
+        }
+        res.send({ message: "Datos guardados exitosamente" });
+      });
+    });
+
+    // Iniciar el servidor
+    app.listen(port, () => {
+      console.log(`Servidor ejecutándose en http://localhost:${port}`);
+    });
+  }
+);
