@@ -21,7 +21,7 @@
     class="container d-flex flex-column justify-content-center align-items-center">
     <form
       action=""
-      class="form-control form-signature d-flex justify-content-center align-items-center flex-column gap-3">
+      class="form-control form-signature d-flex justify-content-center align-items-center flex-column gap-2">
       <div class="logo">
         <img src="cecapia.jpg" width="200px" alt="" />
       </div>
@@ -32,9 +32,11 @@
         <input type="text" class="form-control" id="text-cedula" />
       </div>
 
-      <label for="">Firma: </label>
-      <div id="signature-pad">
-        <canvas class="border" id="signature-canva"></canvas>
+      <div class="d-flex justify-content-start align-items-start w-100">
+        <label for="" class="h4">Firma: </label>
+        <div id="signature-pad" class="m-auto">
+          <canvas class="border" id="signature-canva"></canvas>
+        </div>
       </div>
       <div class="">
         <button id="save" type="button" class="btn btn-success text-center">
