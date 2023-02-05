@@ -1,4 +1,4 @@
-const canvas = document.querySelector("canvas");
+const canvas = document.querySelector("#signature-canva");
 const clearButton = document.querySelector("#clear");
 const saveButton = document.querySelector("#save");
 const textCedula = document.querySelector("#text-cedula");
@@ -10,16 +10,13 @@ const frontInput = document.querySelector("#front-input");
 const backInput = document.querySelector("#back-input");
 const switchButton = document.querySelector("#switch-button");
 const lado = document.querySelector("#lado");
-
-var canva = document.getElementById("signature-canva");
-console.log(window.screen.width)
+let user = {};
 if (window.screen.width > 800) {
-  canva.width = 500;
-  canva.height = 300;
-}else{
-  canva.width = 300;
-  canva.height = 200;
-
+  canvas.width = 500;
+  canvas.height = 300;
+} else {
+  canvas.width = 300;
+  canvas.height = 200;
 }
 
 const signaturePad = new SignaturePad(canvas, {
@@ -30,9 +27,10 @@ const signaturePad = new SignaturePad(canvas, {
 
 clearButton.addEventListener("click", function () {
   signaturePad.clear();
-  window.location.reload();
+  signaturePad.on();
 });
 
+// foto cedula
 let isBack = false;
 if (!isBack) {
   console.log("parte frontal");
@@ -129,16 +127,44 @@ form.addEventListener("submit", function (event) {
       confirmButtonText: "Entendido",
     }).then(() => {
       document.getElementById("img2").src = back;
-
       document.getElementById("fotos-cedula").click();
       document.getElementById("fotos-cedula").classList.add("d-none");
+      document.getElementById("send-info").classList.remove("d-none");
     });
   }
 
   // Do something with front and back (e.g. send to server)
 });
 
-saveButton.addEventListener("click", function () {
+saveButton.addEventListener("click", () => {
+  var context = canvas.getContext("2d");
+  const dataURL = signaturePad.toDataURL("image/png");
+  if (
+    !context
+      .getImageData(0, 0, canvas.width, canvas.height)
+      .data.some((channel) => channel !== 0)
+  ) {
+    Swal.fire({
+      title: "Warning",
+      text: "Debe firmar para guardar la firma",
+      icon: "warning",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Entendido",
+    });
+  } else {
+    signaturePad.off();
+    user = {
+      cedula: "",
+      firma: dataURL,
+      frontImg: "front",
+      backImg: "back",
+    };
+    console.log(user);
+  }
+});
+
+const sendInfo = () => {
   const front = frontInput.value;
   const back = backInput.value;
   const dataURL = signaturePad.toDataURL("image/png");
@@ -175,7 +201,7 @@ saveButton.addEventListener("click", function () {
       confirmButtonText: "Entendido",
     });
   } else {
-    const user = {
+    user = {
       cedula: textCedula.value,
       firma: dataURL,
       frontImg: front,
@@ -183,6 +209,7 @@ saveButton.addEventListener("click", function () {
     };
     console.log(user);
   }
+  window.location.reload()
 
   // Save dataURL to database or send to server
-});
+};
