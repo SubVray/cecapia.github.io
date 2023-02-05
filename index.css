@@ -1,11 +1,6 @@
 #signature-canva {
-  min-width: 300px;
+min-width: 300px;
 }
-.form-signature {
-  max-width: 500px;
-}
-
-#video {
-  width: 300px;
-  height: 200px;
+.form-signature{
+	max-width: 500px;
 }

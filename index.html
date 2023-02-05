@@ -18,7 +18,7 @@
   </head>
 
   <body
-    class="container d-flex justify-content-center align-items-center flex-column">
+    class="container d-flex flex-column justify-content-center align-items-center">
     <form
       action=""
       class="form-control form-signature d-flex justify-content-center align-items-center flex-column gap-3">
@@ -41,6 +41,22 @@
           Borrar
         </button>
       </div>
+      <button type="button" onclick="startCamera()">Subir fotos</button>
+    </form>
+
+    <form id="upload-form" class="d-none">
+      <div id="camera-box">
+        <video id="camera-stream" width="300px"></video>
+        <button id="capture-button">Capturar</button>
+      </div>
+
+      <input type="hidden" id="front-input" name="front" />
+      <input type="hidden" id="back-input" name="back" />
+
+      <button type="button" id="switch-button">
+        Cambiar a la parte trasera
+      </button>
+      <button type="submit">Upload</button>
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
